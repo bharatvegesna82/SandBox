@@ -1,10 +1,8 @@
 package com.home.domain;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
 
-/**
- * Created by bharatkumarvegesna on 3/15/17.
- */
+@Component
 public enum Operation {
 
     IN("$in");
