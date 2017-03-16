@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: assertj-core-3.6.2.jar
+Main-Class: com.home.SandboxApplication
+

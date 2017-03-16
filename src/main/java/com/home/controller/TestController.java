@@ -1,29 +1,34 @@
 package com.home.controller;
 
+import com.home.domain.Customer;
 import com.home.service.TestService;
-import org.json.simple.JSONObject;
+import com.home.service.TestServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/SandBox")
+@RequestMapping(value = "/SandBox/TestData")
 public class TestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 
-    @Autowired
-    TestService testService;
-
-    @RequestMapping(value = "/TestData/{collection}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{collection}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<JSONObject> getData(@PathVariable("collection") String collection)
+    public ResponseEntity<Customer> getData(@PathVariable("collection") String collection)
     {
-        JSONObject result = testService.getData();
-        return new ResponseEntity<JSONObject>(result, HttpStatus.OK);
+        TestService testService = new TestServiceImpl();
+        Customer result = testService.getData();
+        return new ResponseEntity<Customer>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST )
+    @ResponseStatus( HttpStatus.CREATED )
+    public void create( @RequestBody Customer input ){
+        TestService testService = new TestServiceImpl();
+        testService.saveData( input );
     }
 
 }

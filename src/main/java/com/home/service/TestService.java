@@ -1,9 +1,8 @@
 package com.home.service;
 
-import org.json.simple.JSONObject;
-import org.springframework.stereotype.Service;
+import com.home.domain.Customer;
 
-@Service
 public interface TestService {
-    public JSONObject getData();
+    public Customer getData();
+    public void saveData(Customer customer);
 }
